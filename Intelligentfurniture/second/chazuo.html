@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>智能灯控</title>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css" />
+		<style type="text/css">
+			.active {
+				padding: 5px;
+				border: 1px #ccc solid;
+				box-shadow: inset 0 0 5px 5px #ccc;
+			}
+			
+			.mui-slider .mui-slider-group .mui-slider-item img {
+				width: 50%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" onclick="window.location.href='../main.html'"></a>
+			<h1 class="mui-title">灯光控制</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-content-padded">
+				<p>
+					*220V插座
+				</p>
+			</div>
+			<div>
+				<ul class="mui-table-view mui-grid-view mui-grid-9" style="background: #efeff4;margin-top: -35px;width: 30%;float: right;margin-right: 20px;">
+					<li class="mui-table-view-cell mui-media mui-col-xs-12 mui-col-sm-3" style="float: left;">
+						<a onclick="window.location.href='chazuotime.html'">
+							<span class="mui-icon iconfont icon-icon219" style="color: #56abe4;"></span>
+							<div class="mui-media-body" style="">定时</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div style="padding: 20px;text-align: center;">
+				<img id="my-image-插座" src="../images/you2.png" width="80%" />
+			</div>
+
+		</div>
+		<script src="../js/mui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/my/variable.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function() {
+				var PlugState = 0; //开关，0关，1开
+				//从本地获取开关状态
+				if(localStorage.getItem("PlugState") != null) {
+					PlugState = localStorage.getItem("PlugState");
+				}
+				//开关判断
+				isPlugState();
+				//点击判断
+				var isClick = 0
+				mui("#my_image_chazuo")[0].addEventListener("tap", function() {
+					if(isClick == 0) {
+						mui("#my_image_chazuo")[0].src = "../images/you0.png";
+						isClick = 1;
+						PlugState = 0; //开关，0关，1开
+						sendData();
+
+					} else {
+						mui("#my_image_chazuo")[0].src = "../images/you1.png";
+						isClick = 0;
+						PlugState = 1; //开关，0关，1开
+						sendData();
+					}
+					localStorage.setItem("PlugState", PlugState);
+				});
+				/**
+				 * 灯光开关判断
+				 */
+				function isPlugState() {
+					if(PlugState == 0) {
+						mui("#my_image_chazuo")[0].src = "../images/you0.png";
+					} else {
+						mui("#my_image_chazuo")[0].src = "../images/you1.png";
+					}
+
+				}
+				/**
+				 * 后台数据交互 
+				 */
+				function sendData() {
+					var w = null; //等待动画
+					mui.ajax(myUrl + 'Command_plugControl', {
+						data: {
+							//MacName;PlugState{0,1}注：0关闭1开启
+							MacName: plus.storage.getItem("myMac"),
+							PlugState: PlugState
+						},
+						dataType: 'json', //服务器返回json格式数据
+						type: 'post', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						beforeSend: function() {
+							w = plus.nativeUI.showWaiting();
+						},
+						success: function(data) {
+							w.close();
+							//服务器返回响应，根据响应结果，分析是否登录成功；
+							if(data.json == 0) {
+								plus.nativeUI.toast(codes[0]);
+								return;
+							}
+							if(data.json == 1) {
+								plus.nativeUI.toast(codes[1]);
+								return;
+							}
+							if(data.json == 2) {
+								plus.nativeUI.toast(codes[2]);
+								return;
+							}
+
+						},
+						error: function(xhr, type, errorThrown) {
+							w.close();
+							//异常处理；
+							console.log(type);
+							plus.nativeUI.toast("网络异常");
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+
+</html>

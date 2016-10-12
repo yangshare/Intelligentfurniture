@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html class="ui-page-login">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<style>
+			.area {
+				margin: 20px auto 0px auto;
+			}
+			
+			.mui-input-group {
+				margin-top: 10px;
+			}
+			
+			.mui-input-group:first-child {
+				margin-top: 20px;
+			}
+			
+			.mui-input-group label {
+				width: 22%;
+			}
+			
+			.mui-input-row label~input,
+			.mui-input-row label~select,
+			.mui-input-row label~textarea {
+				width: 78%;
+			}
+			
+			.mui-checkbox input[type=checkbox],
+			.mui-radio input[type=radio] {
+				top: 6px;
+			}
+			
+			.mui-content-padded {
+				margin-top: 25px;
+			}
+			
+			.mui-btn {
+				padding: 10px;
+			}
+			
+			.link-area {
+				display: block;
+				margin-top: 25px;
+				text-align: center;
+			}
+			
+			.spliter {
+				color: #bbb;
+				padding: 0px 8px;
+			}
+			
+			.oauth-area {
+				position: absolute;
+				bottom: 20px;
+				left: 0px;
+				text-align: center;
+				width: 100%;
+				padding: 0px;
+				margin: 0px;
+			}
+			
+			.oauth-area .oauth-btn {
+				display: inline-block;
+				width: 50px;
+				height: 50px;
+				background-size: 30px 30px;
+				background-position: center center;
+				background-repeat: no-repeat;
+				margin: 0px 20px;
+				/*-webkit-filter: grayscale(100%); */
+				border: solid 1px #ddd;
+				border-radius: 25px;
+			}
+			
+			.oauth-area .oauth-btn:active {
+				border: solid 1px #aaa;
+			}
+			
+			.oauth-area .oauth-btn.disabled {
+				background-color: #ddd;
+			}
+			
+			.login-icon {
+				margin: 35px;
+				text-align: center;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">登录</h1>
+		</header>
+		<div class="mui-content">
+			<div class="login-icon" style="height: 30%;">
+				<span class="mui-icon  mui-icon-contact" style="color:#007AFF;font-size: 98px;font-weight: lighter;text-shadow: 0 -1px 0 black;"></span>
+			</div>
+			<div style="height: 70%;">
+				<form id='login-form' class="mui-input-group">
+
+					<div class="mui-input-row">
+						<label>账号</label>
+						<input id='account' type="tel" class="mui-input-clear mui-input" placeholder="请输入手机号码" maxlength="11">
+					</div>
+
+					<div class="mui-input-row">
+						<label>密码</label>
+						<input id='password' type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
+					</div>
+				</form>
+				<form class="mui-input-group">
+					<ul class="mui-table-view mui-table-view-chevron">
+						<li class="mui-table-view-cell">
+							记住密码
+							<div id="autoLogin" class="mui-switch">
+								<div class="mui-switch-handle"></div>
+							</div>
+						</li>
+					</ul>
+				</form>
+				<div class="mui-content-padded">
+					<button id='login' class="mui-btn mui-btn-block mui-btn-primary">登录</button>
+					<div class="link-area"><a id='reg'>注册账号</a> <span class="spliter">|</span> <a href="forget_password.html" id='forgetPassword'>忘记密码</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/my/variable.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/app.js"></script>
+
+		<script>
+		(function($, doc) {
+				$.init();
+				$.plusReady(function() {
+					//控件实例化
+					var loginButton = doc.getElementById('login');
+					var accountBox = doc.getElementById('account');
+					var passwordBox = doc.getElementById('password');
+					var autoLoginButton = doc.getElementById("autoLogin");
+					var regButton = doc.getElementById('reg');
+					var forgetButton = doc.getElementById('forgetPassword');
+
+					var settings = app.getSettings(); //获取本地设置集
+					var userinfo = JSON.parse(localStorage.getItem("user")); //内存中用户信息
+					//检查 "记住密码" 状态，NO就自动填账号密码
+					if(settings.autoLogin && userinfo != null) {
+						accountBox.value = userinfo.account;
+						passwordBox.value = userinfo.password;
+					}
+
+					loginButton.addEventListener('tap', function(event) {
+						var loginInfo = {
+							account: accountBox.value,
+							password: passwordBox.value
+						};
+						app.login(loginInfo, function(err) {
+							if(err) {
+								plus.nativeUI.toast(err);
+								return;
+							} else {
+								var w = null; //等待动画
+								mui.ajax(myUrl + 'User_login', {
+									data: {
+										PhoneNum: accountBox.value,
+										PassWord: passwordBox.value
+
+									},
+									dataType: 'json', //服务器返回json格式数据
+									type: 'post', //HTTP请求类型
+									timeout: 10000, //超时时间设置为10秒；
+									beforeSend: function() {
+										w = plus.nativeUI.showWaiting("");
+									},
+									success: function(data) {
+										w.close();
+										//服务器返回响应，根据响应结果，分析是否登录成功；
+										if(data.json == 2) {
+											plus.nativeUI.toast("用户名不存在");
+											return;
+										}
+										if(data.json == 0) {
+											plus.nativeUI.toast("密码错误");
+											return;
+										} else {
+											//将MAC地址存本地
+											plus.storage.setItem("myMac", data.json);
+											//用户信息存本地
+											localStorage.setItem('user', JSON.stringify(loginInfo));
+											//登录成功跳转到主页
+											mui.openWindow({
+												url: "main.html",
+												id: "main.html",
+												show: {
+													aniShow: 'pop-in',
+													duration: 300
+												}
+											});
+										}
+
+									},
+									error: function(xhr, type, errorThrown) {
+										w.close();
+										//异常处理；
+										console.log(type);
+										plus.nativeUI.toast("网络异常");
+									}
+								});
+							}
+
+						});
+					});
+					//判断是否选择了记住密码（如果NO就add激活类）
+					autoLoginButton.classList[settings.autoLogin ? 'add' : 'remove']('mui-active');
+					//记住密码点击监听
+					autoLoginButton.addEventListener('toggle', function(event) {
+						setTimeout(function() {
+							var isActive = event.detail.isActive;
+							//							console.log(isActive);
+							settings.autoLogin = isActive;
+							app.setSettings(settings);
+						}, 50);
+					}, false);
+
+					regButton.addEventListener('tap', function(event) {
+						$.openWindow({
+							url: 'reg.html',
+							id: 'reg',
+							preload: true,
+							show: {
+								aniShow: 'pop-in'
+							},
+							styles: {
+								popGesture: 'hide'
+							},
+							waiting: {
+								autoShow: false
+							}
+						});
+					}, false);
+
+					//返回键，退出应用
+					var backButtonPress = 0;
+					$.back = function(event) {
+						backButtonPress++;
+						if(backButtonPress > 1) {
+							plus.runtime.quit();
+						} else {
+							plus.nativeUI.toast('再按一次退出应用');
+						}
+						setTimeout(function() {
+							backButtonPress = 0;
+						}, 1000);
+						return false;
+					};
+
+				});
+			}(mui, document));
+		</script>
+	</body>
+
+</html>

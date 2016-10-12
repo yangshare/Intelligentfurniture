@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>智能灯控</title>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<style>
+			input {
+				border: 0px solid white;
+				padding-left: 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" onclick="window.location.href='../main.html'"></a>
+			<h1 class="mui-title">家庭环境检测器</h1>
+		</header>
+		<div class="mui-content" style="margin-top: 20px;">
+			<div style="margin: auto;text-align: center;">
+				<img id="main_picture" src="../images/you4.png" width="60%" style="margin: auto;" />
+			</div>
+			<div style="margin: 20px 0 0 5px;color:white">
+				<div id="">
+					<input type="" name="" id="" value="温度" style="width: 150px;height: 40px;background: #48b8e6;" />
+					<label style="color: black;"><font id="temperature">30</font>℃</label>
+				</div>
+				<div id="" style="margin-top: 0;">
+					<input type="" name="" id="" value="湿度" style="width: 130px;height: 40px;background: #d74961;" />
+					<label style="color: black;"><font id="humidity">30</font>%</label>
+				</div>
+				<div id="" style="margin-top: 0;">
+					<input type="" name="" id="" value="光照强度" style="width: 140px;height: 40px;background: #f5b10c;" />
+					<label style="color: black;"><font id="Light_intensity">320</font>Lux</label>
+				</div>
+				<div id="" style="margin-top: 0;">
+					<input type="" name="" id="" value="PM2.5" style="width: 160px;height: 40px;background: #17f50c;" />
+					<label style="color: black;"><font id="PM">6</font></label>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function() {
+				//取出首页传过来的环境参数
+				var environmentParameter = plus.webview.currentWebview().environmentParameter;
+				environmentParameter = JSON.parse(environmentParameter);
+				mui("#temperature")[0].innerText = environmentParameter.T;
+				mui("#humidity")[0].innerText = environmentParameter.H;
+				mui("#Light_intensity")[0].innerText = environmentParameter.L;
+				mui("#PM")[0].innerText = environmentParameter.Q;
+			});
+		</script>
+	</body>
+
+</html>

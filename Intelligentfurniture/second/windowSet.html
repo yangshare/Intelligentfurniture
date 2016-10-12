@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>智能灯控</title>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css" />
+		<style>
+			.mui-input-clear {
+				margin-top: 50px;
+			}
+			
+			#main-picture {
+				height: 200px;
+				width: 100%;
+			}
+			
+			.mui-content {
+				margin-top: -40px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" onclick="window.location.href='../main.html'"></a>
+			<h1 class="mui-title">窗帘控制</h1>
+		</header>
+		<div class="mui-input-clear">
+			<img id="main-picture" src="../images/you3.jpg" />
+		</div>
+		<div class="mui-content">
+			<ul class="mui-table-view mui-grid-view mui-grid-9">
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<span></br></span>
+				</li>
+
+				<!--暂停-->
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="padding-bottom: 0px;">
+					<a href="javascript:void(0)" onclick="myClick(1)">
+						<span class="mui-icon iconfont icon-stop"></span>
+						<div class="mui-media-body">暂停</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<span></br></span>
+				</li>
+
+				<!--开-->
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="javascript:void(0)" onclick="myClick(2)">
+						<span class="mui-icon iconfont icon-open" style="float: right;"></span>
+						<div class="mui-media-body" style="padding-left: 45px;">开</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<span></br></span>
+				</li>
+				<!--关-->
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="javascript:void(0)" onclick="myClick(0)">
+						<span class="mui-icon iconfont icon-guanbi1" style="float: left;"></span>
+						<div class="mui-media-body" style="padding-right: 50px;">关</div>
+					</a>
+				</li>
+
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<span></br></span>
+				</li>
+				<!--定时-->
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="padding-top: 0px;">
+					<a href="windowSetTime.html">
+						<span class="mui-icon iconfont icon-icon219"></span>
+						<div class="mui-media-body">定时</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<span></br></span>
+				</li>
+			</ul>
+		</div>
+		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/app.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/my/variable.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function() {
+				var WindowState = 3; //开关，0关，1暂停，2开启
+				//从本地获取开关状态
+				if(localStorage.getItem("WindowState") != null) {
+					WindowState = localStorage.getItem("WindowState");
+				}
+				//窗帘状态判断
+				isWindowState();
+				//点击判断
+				//开：      11cd6e
+				//暂停：    ea8010
+				//关：      eb4f38
+				function myClick(index) {
+					switch(index) {
+						case 0:
+							mui(".icon-guanbi1")[0].style.color = "#eb4f38";
+							WindowState = 0; //开关，0关，1开
+							break;
+						case 1:
+							mui(".icon-stop")[0].style.color = "#ea8010";
+							WindowState = 1; //开关，0关，1开
+							break;
+						case 2:
+							mui(".icon-open")[0].style.color = "#11cd6e";
+							WindowState = 2; //开关，0关，1开
+							break;
+						default:
+							break;
+					}
+					sendData(WindowState);
+				}
+				/**
+				 * 窗帘状态判断
+				 */
+				function isWindowState() {
+					switch(index) {
+						case 0:
+							mui(".icon-guanbi1")[0].style.color = "#eb4f38";
+							break;
+						case 1:
+							mui(".icon-stop")[0].style.color = "#ea8010";
+							break;
+						case 2:
+							mui(".icon-open")[0].style.color = "#11cd6e";
+							break;
+						default:
+							break;
+					}
+				}
+				/**
+				 * 后台数据交互 
+				 */
+				function sendData(windowState) {
+					var w = null; //等待动画
+					mui.ajax(myUrl + 'Command_windowControl', {
+						data: {
+							//MacName;WindowState{0,1,2}注：0关闭，1暂停,2开启
+							MacName: plus.storage.getItem("myMac"),
+							WindowState: windowState
+						},
+						dataType: 'json', //服务器返回json格式数据
+						type: 'post', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						beforeSend: function() {
+							w = plus.nativeUI.showWaiting();
+						},
+						success: function(data) {
+							w.close();
+							//服务器返回响应，根据响应结果，分析是否登录成功；
+							if(data.json == 0) {
+								plus.nativeUI.toast(codes[0]);
+								return;
+							}
+							if(data.json == 1) {
+								plus.nativeUI.toast(codes[1]);
+								localStorage.setItem("WindowState",windowState);
+								return;
+							}
+							if(data.json == 2) {
+								plus.nativeUI.toast(codes[2]);
+								return;
+							}
+
+						},
+						error: function(xhr, type, errorThrown) {
+							w.close();
+							//异常处理；
+							console.log(type);
+							plus.nativeUI.toast("网络异常");
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>智能灯控</title>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+		<style>
+			.mui-input-clear {
+				margin-top: 50px;
+			}
+			
+			#main-picture {
+				margin-left: 5%;
+				height: 150px;
+				width: 90%;
+			}
+			
+			.mui-input-group:first-child {
+				margin-top: 20px;
+			}
+			
+			.mui-input-group label {
+				width: 50%;
+			}
+			
+			.mui-content {
+				margin-top: -40px;
+			}
+			
+			.mui-input-row label~input,
+			.mui-input-row label~select,
+			.mui-input-row label~textarea {
+				width: 50%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-home mui-pull-left"></a>
+			<h1 class="mui-title">我</h1>
+		</header>
+		<div class="mui-input-clear">
+			<img id="main-picture" src="images/img/w0.png" />
+		</div>
+		<div class="mui-input-group mui-card" style="margin-top: 5px;">
+			<div class="mui-input-row">
+				<label>姓名</label>
+				<input id='name' type="text" value="饶旭">
+			</div>
+			<div class="mui-input-row">
+				<label>性别</label>
+				<input id='sex' type="text" value="男">
+			</div>
+			<div class="mui-input-row">
+				<label>设备状态</label>
+				<input id='Mac' type="text" value="未连接">
+			</div>
+			<div class="mui-input-row">
+				<label><a href="javascript:void(0);" onclick="toFeedback()">反馈</a></label>
+			</div>
+			<div class="mui-input-row">
+				<label><a href="javascript:void(0);" onclick="toAbout()">关于</a></label>
+			</div>
+		</div>
+		<div class="mui-content-padded" style="padding: 5px;">
+			<button id='exit' onclick="exit()" class="mui-btn mui-btn-block mui-btn-primary" style="padding: 5px;">
+				退出登录
+			</button>
+		</div>
+		<div class="mui-bar mui-bar-footer">
+			<nav class="mui-bar mui-bar-tab">
+				<a id="locationMain" class="mui-tab-item ">
+					<span class="mui-icon iconfont icon-qishi01"></span>
+					<span class="mui-tab-label">通知</span>
+				</a>
+				<a id="map" class="mui-tab-item " onclick="window.location.href='main.html'">
+					<span class="mui-icon iconfont icon-zhuye"></span>
+					<span class="mui-tab-label">主页</span>
+				</a>
+				<a id="dayHistoryData" class="mui-tab-item mui-active" onclick="window.location.href='systemset.html'">
+					<span class="mui-icon iconfont icon-wo"></span>
+					<span class="mui-tab-label">我</span>
+				</a>
+			</nav>
+		</div>
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/my/variable.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function() {
+				//从服务端拉取环境参数
+				function sendData() {
+					var w = null; //等待动画
+					mui.ajax(myUrl + 'User_personalInformation', {
+						data: {
+							PhoneNum: JSON.parse(localStorage.getItem("user")).account
+						},
+						dataType: 'json', //服务器返回json格式数据
+						type: 'post', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						beforeSend: function() {
+							w = plus.nativeUI.showWaiting("");
+						},
+						success: function(data) {
+							w.close();
+							/*状态码
+							 * “ UserName”
+							 *“ Sex”
+							 *“ ConnectionState” 设备连接状态
+							 *注： ConnectionState = 0 为未连接 = 1 为已连接
+							 */
+
+							var userInfo = data.myJson;
+							if(userInfo != null && userInfo != "") {
+								mui("#name")[0].value = userInfo.UserName;
+								mui("#sex")[0].value = userInfo.Sex;
+								if(userInfo.ConnectionState == 1) {
+									mui("#Mac")[0].value = "已连接";
+								} else {
+									mui("#Mac")[0].value = "未连接";
+								}
+							} else {
+								console.log("我页面：" + JSON.stringify(data));
+								mui.toast("服务器拉取失败");
+							}
+
+						},
+						error: function(xhr, type, errorThrown) {
+							w.close();
+							//异常处理；
+							console.log(type);
+							plus.nativeUI.toast("网络异常,请求失败");
+						}
+					});
+				}
+				//跳到反馈页面
+				function toFeedback() {
+					mui.openWindow({
+						url: "feedback.html",
+						id: "feedback.html",
+						show: {
+							aniShow: 'pop-in',
+							duration: 300
+						}
+					});
+				}
+				//跳到关于页面
+				function toAbout() {
+					mui.toast("我们是四川文理学子");
+				}
+
+				//退出登陆
+				function exit() {
+					mui.openWindow({
+						url: "login.html",
+						id: "login.html",
+						show: {
+							aniShow: 'pop-in',
+							duration: 300
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/mui.css" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">通知</h1>
+		</header>
+		<div class="mui-content">
+			<div id="personalTask" class="mui-scroll">
+				<ul id="logList" class="mui-table-view">
+					<div class="mui-loading" style="height: 50px;">
+						<br />
+						<div class="mui-spinner"></div>
+					</div>
+					<!--<li class="mui-table-view-cell mui-media">
+						<div class="mui-media-body">
+							有人进入
+							<p class="mui-ellipsis">
+								<span class="mui-icon iconfont icon-yewuyeicon10">2016-09-22 16:41:40</span>
+							</p>
+						</div>
+					</li>-->
+
+				</ul>
+
+			</div>
+		</div>
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/my/variable.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function() {
+				//从服务端拉取数据
+				mui.ajax(myUrl + 'Log_ getMyLog', {
+					data: {
+						PhoneNum: JSON.parse(localStorage.getItem("user")).account
+					},
+					dataType: 'json', //服务器返回json格式数据
+					type: 'post', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					success: function(data) {
+						var logList = data.myjson.log_list;
+						if(logList != "" && logList != null) {
+							mui("#logList")[0].innerHTML = "";
+							var fragment = document.createDocumentFragment(); //创建文档碎片节点
+							var li;//li标签
+							for(var i = 0; i < logList.length; i++) {
+								li = document.createElement('li');
+								li.className = 'mui-table-view-cell mui-media';
+								li.innerHTML = '<div class="mui-media-body">' +
+									logList[i].text + '<p class="mui-ellipsis"><span class="mui-icon iconfont icon-yewuyeicon10">' +
+									logList[i].time + '</span></p></div>';
+								fragment.appendChild(li);
+							}
+							mui("#logList")[0].appendChild(fragment);
+
+						} else {
+							mui.toast("服务器拉取失败");
+						}
+
+					},
+					error: function(xhr, type, errorThrown) {
+						//异常处理；
+						console.log(type);
+						plus.nativeUI.toast("网络异常,请求失败");
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

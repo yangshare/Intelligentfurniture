@@ -1,0 +1,1957 @@
+{
+	"@platforms": [
+		"android",
+		"iPhone",
+		"iPad"
+	],
+	"id": "H5ACFB129",/*应用的标识，创建应用时自动生成，勿手动修改*/
+	"name": "智能家居",/*应用名称，程序桌面图标名称*/
+	"version": {
+		"name": "1.0.0",/*应用版本名称*/
+		"code": "10707"
+	},
+	"description": "HTML5 Plus能力演示",/*应用描述信息*/
+	"icons": {
+		"144": "icon.png"
+	},
+	"launch_path": "login.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+	"developer": {
+		"name": "",/*开发者名称*/
+		"email": "",/*开发者邮箱地址*/
+		"url": "http://www.dcloud.io"
+	},
+	"orientation": [
+		"portrait"
+	],
+	"permissions": {
+		"Accelerometer": {
+			"description": "加速度传感器"
+		},
+		"Audio": {
+			"description": "音频录制与播放"
+		},
+		"Cache": {
+			"description": "缓存管理"
+		},
+		"Camera": {
+			"description": "摄像头"
+		},
+		"Console": {
+			"description": "调试输出日志"
+		},
+		"Contacts": {
+			"description": "系统通讯录"
+		},
+		"Device": {
+			"description": "设备信息"
+		},
+		"Downloader": {
+			"description": "文件下载"
+		},
+		"Events": {
+			"description": "扩展事件"
+		},
+		"File": {
+			"description": "本地文件系统"
+		},
+		"Gallery": {
+			"description": "系统相册"
+		},
+		"Geolocation": {
+			"description": "位置信息"
+		},
+		"Invocation": {},
+		"Messaging": {
+			"description": "消息通讯"
+		},
+		"Orientation": {
+			"description": "方向传感器"
+		},
+		"Proximity": {
+			"description": "距离传感器"
+		},
+		"Storage": {
+			"description": "本地数据存储"
+		},
+		"Webview": {
+			"description": "窗口管理"
+		},
+		"NativeUI": {
+			"description": "原生UI控件"
+		},
+		"Navigator": {
+			"description": "浏览器信息"
+		},
+		"Uploader": {
+			"description": "文件上传"
+		},
+		"Runtime": {
+			"description": "运行环境"
+		},
+		"XMLHttpRequest": {
+			"description": "跨域网络请求"
+		},
+		"Zip": {
+			"description": "压缩与解压"
+		},
+		"Barcode": {
+			"description": "二维码扫描"
+		},
+
+
+
+
+
+		"Speech": {
+			"description": "语音识别"
+		}
+	},
+	"plus": {
+		"splashscreen": {
+			"autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+			"waiting": true,
+			"delay": "3000"
+		},
+		"popGesture": "close",/*设置应用默认侧滑返回关闭Webview窗口，"none"为无侧滑返回功能，"hide"为侧滑隐藏Webview窗口。参考http://ask.dcloud.net.cn/article/102*/
+		"runmode": "liberate",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
+		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
+		"distribute": {
+			"apple": {
+				"appid": "",/*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
+				"mobileprovision": "",/*iOS应用打包配置文件*/
+				"password": "",/*iOS应用打包个人证书导入密码*/
+				"p12": "",/*iOS应用打包个人证书，打包配置文件关联的个人证书*/
+				"devices": "iphone",/*iOS应用支持的设备类型，可取值iphone/ipad/universal*/
+				"urlschemewhitelist": [/*iOS9调用第三方应用urlscheme白名单*/
+					"baidumap",
+					"iosamap"
+				],
+				"UIReserveStatusbarOffset": false,/*iOS平台开启沉浸式状态栏样式*/
+				"shortcuts": [/*3D Touch快捷菜单项*/
+					{
+						"type": "share",
+						"title": "分 享",
+						"subtitle": "分享到微信、微博、QQ",
+						"icontype": "UIApplicationShortcutIconTypeShare"
+					}, {
+						"type": "about",
+						"title": "关 于",
+						"subtitle": "www.dcloud.io",
+						"iconfile": "sa.png",
+						"userinfo": {
+							"key3": "value3"
+						}
+					}
+				],
+				"frameworks": [
+					"GameKit.framework"
+				]
+			},
+			"google": {
+				"packagename": "",/*Android应用包名，如io.dcloud.HelloH5*/
+				"keystore": "",/*Android应用打包使用的密钥库文件*/
+				"password": "",/*Android应用打包使用密钥库中证书的密码*/
+				"aliasname": "",/*Android应用打包使用密钥库中证书的别名*/
+				/* "ImmersedStatusbar":true,Android平台开启沉浸式状态栏样式*/
+				"permissions": ["<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-feature android:name=\"android.hardware.camera.autofocus\"/>","<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>","<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>","<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.SEND_SMS\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.WRITE_SMS\"/>","<uses-permission android:name=\"android.permission.READ_SMS\"/>"]
+			},
+			"orientation": [
+				"portrait-primary"
+			],/*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
+			"icons": {
+				"ios": {
+					"prerendered": true, /*应用图标是否已经高亮处理，在iOS6及以下设备上有效*/
+					"auto": "", /*应用图标，分辨率：512x512，用于自动生成各种尺寸程序图标*/
+					"iphone": {
+						"normal": "unpackage/res/icons/57x57.png", /*iPhone3/3GS程序图标，分辨率：57x57*/
+						"retina": "unpackage/res/icons/114x114.png", /*iPhone4程序图标，分辨率：114x114*/
+						"retina7": "unpackage/res/icons/120x120.png", /*iPhone4S/5/6程序图标，分辨率：120x120*/
+						"retina8": "unpackage/res/icons/180x180.png", /*iPhone6 Plus程序图标，分辨率：180x180*/
+						"spotlight-normal": "unpackage/res/icons/29x29.png", /*iPhone3/3GS Spotlight搜索程序图标，分辨率：29x29*/
+						"spotlight-retina": "unpackage/res/icons/58x58.png", /*iPhone4 Spotlight搜索程序图标，分辨率：58x58*/
+						"spotlight-retina7": "unpackage/res/icons/80x80.png", /*iPhone4S/5/6 Spotlight搜索程序图标，分辨率：80x80*/
+						"settings-normal": "unpackage/res/icons/29x29.png", /*iPhone4设置页面程序图标，分辨率：29x29*/
+						"settings-retina": "unpackage/res/icons/58x58.png", /*iPhone4S/5/6设置页面程序图标，分辨率：58x58*/
+						"settings-retina8": "unpackage/res/icons/87x87.png"
+					},
+					"ipad": {
+						"normal": "unpackage/res/icons/72x72.png", /*iPad普通屏幕程序图标，分辨率：72x72*/
+						"retina": "unpackage/res/icons/144x144.png", /*iPad高分屏程序图标，分辨率：144x144*/
+						"normal7": "unpackage/res/icons/76x76.png", /*iPad iOS7程序图标，分辨率：76x76*/
+						"retina7": "unpackage/res/icons/152x152.png", /*iPad iOS7高分屏程序图标，分辨率：152x152*/
+						"spotlight-normal": "unpackage/res/icons/50x50.png", /*iPad Spotlight搜索程序图标，分辨率：50x50*/
+						"spotlight-retina": "unpackage/res/icons/100x100.png", /*iPad高分屏Spotlight搜索程序图标，分辨率：100x100*/
+						"spotlight-normal7": "unpackage/res/icons/40x40.png",/*iPad iOS7 Spotlight搜索程序图标，分辨率：40x40*/
+						"spotlight-retina7": "unpackage/res/icons/80x80.png",/*iPad iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+						"settings-normal": "unpackage/res/icons/29x29.png",/*iPad设置页面程序图标，分辨率：29x29*/
+						"settings-retina": "unpackage/res/icons/58x58.png"
+					}
+				},
+				"android": {
+					"mdpi": "unpackage/res/icons/48x48.png", /*普通屏程序图标，分辨率：48x48*/
+					"ldpi": "unpackage/res/icons/48x48.png", /*大屏程序图标，分辨率：48x48*/
+					"hdpi": "unpackage/res/icons/72x72.png", /*高分屏程序图标，分辨率：72x72*/
+					"xhdpi": "unpackage/res/icons/96x96.png",/*720P高分屏程序图标，分辨率：96x96*/
+					"xxhdpi": "unpackage/res/icons/144x144.png"
+				}
+			},
+			"splashscreen": {
+				"ios": {
+					"iphone": {
+						
+						
+						
+						
+						
+						
+					},
+					"ipad": {
+						
+						
+						
+						
+						
+						
+						
+						
+					}
+				},
+				"android": {
+					"hdpi": "images/background.png",
+					"ldpi": "images/background.png",
+					"mdpi": "images/background.png",
+					"xhdpi": "images/background.png",
+					"xxhdpi": "images/background.png"
+				}
+			},
+			"plugins": {
+				"statics": {},
+				"maps": {
+					
+				},
+				"push": {},
+				"share": {},
+				"payment": {},
+				"oauth": {}
+			}
+		}
+	},
+	"dependencies": {
+		"pages": {
+			"index.html": {
+				"href": "index.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/shortcut.js",
+					"js/immersed.js",
+					"js/update.js",
+					"icon.png"
+				],
+				"refer": [
+					"plus/payment.html",
+					"plus/runtime.html",
+					"plus/barcode.html",
+					"plus/xhr.html",
+					"plus/oauth.html",
+					"plus/share.html",
+					"plus/njs.html",
+					"plus/downloader.html",
+					"plus/nativeui.html",
+					"plus/file.html",
+					"plus/zip.html",
+					"plus/push.html",
+					"plus/statistic.html",
+					"plus/audio.html",
+					"plus/uploader.html",
+					"plus/storage.html",
+					"plus/accelerometer.html",
+					"plus/navigator.html",
+					"plus/message.html",
+					"plus/speech.html",
+					"plus/proximity.html",
+					"plus/maps.html",
+					"plus/camera.html",
+					"plus/device.html",
+					"plus/orientation.html",
+					"plus/gallery.html",
+					"plus/webview.html",
+					"plus/geolocation.html",
+					"about.html",
+					"plus/events.html"
+				],
+				"priority": 0
+			},
+			"plus/doc.html": {
+				"href": "plus/doc.html",
+				"priority": 29,
+				"resources": [],
+				"refer": []
+			},
+			"doc/payment.html": {
+				"href": "doc/payment.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.sons.css",
+					"doc/res/prettify.js"
+				],
+				"priority": 1
+			},
+			"plus/payment.html": {
+				"href": "plus/payment.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/payment.html",
+					"plus/doc.html",
+					"plus/payment_iap.html"
+				],
+				"priority": 0
+			},
+			"doc/runtime.html": {
+				"href": "doc/runtime.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js",
+					"doc/res/prettify.sons.css"
+				],
+				"priority": 2
+			},
+			"plus/runtime_launch.html": {
+				"href": "plus/runtime_launch.html",
+				"resources": [
+					"js/common.js"
+				],
+				"refer": [],
+				"priority": 3
+			},
+			"plus/runtime.html": {
+				"href": "plus/runtime.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/runtime.html",
+					"plus/runtime_launch.html",
+					"plus/doc.html"
+				],
+				"priority": 1
+			},
+			"doc/barcode.html": {
+				"href": "doc/barcode.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js",
+					"doc/res/prettify.sons.css"
+				],
+				"priority": 3
+			},
+			"plus/barcode_scan.html": {
+				"href": "plus/barcode_scan.html",
+				"resources": [],
+				"refer": [],
+				"priority": 4
+			},
+			"plus/barcode_scan2.html": {
+				"href": "plus/barcode_scan2.html",
+				"resources": [],
+				"refer": [],
+				"priority": 4
+			},
+			"plus/barcode.html": {
+				"href": "plus/barcode.html",
+				"resources": [
+					"img/barcode.png",
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/barcode.html",
+					"plus/barcode_scan.html",
+					"plus/barcode_scan2.html",
+					"plus/doc.html"
+				],
+				"priority": 2
+			},
+			"doc/xhr.html": {
+				"href": "doc/xhr.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js",
+					"doc/res/prettify.sons.css"
+				],
+				"priority": 4
+			},
+			"plus/xhr.html": {
+				"href": "plus/xhr.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/xhr.html",
+					"plus/doc.html"
+				],
+				"priority": 3
+			},
+			"doc/oauth.html": {
+				"href": "doc/oauth.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.sons.css",
+					"doc/res/prettify.js"
+				],
+				"priority": 5
+			},
+			"plus/oauth.html": {
+				"href": "plus/oauth.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/oauth.html",
+					"plus/doc.html"
+				],
+				"priority": 4
+			},
+			"doc/share.html": {
+				"href": "doc/share.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js",
+					"doc/res/prettify.sons.css"
+				],
+				"priority": 6
+			},
+			"plus/share.html": {
+				"href": "plus/share.html",
+				"resources": [
+					"img/add.png",
+					"logo.png",
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/share.html",
+					"plus/doc.html"
+				],
+				"priority": 5
+			},
+			"plus/njs_android_shortcut.html": {
+				"href": "plus/njs_android_shortcut.html",
+				"resources": [
+					"css/common.css",
+					"icon.png",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"priority": 6,
+				"refer": [
+					"plus/doc.html"
+				]
+			},
+			"plus/njs_ios_gamecenter.html": {
+				"href": "plus/njs_ios_gamecenter.html",
+				"resources": [
+					"img/5.jpg",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 7
+			},
+			"doc/android.html": {
+				"href": "doc/android.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.sons.css",
+					"doc/res/prettify.js"
+				],
+				"priority": 9
+			},
+			"doc/ios.html": {
+				"href": "doc/ios.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.sons.css",
+					"doc/res/prettify.js"
+				],
+				"priority": 10
+			},
+			"doc/native.js.html": {
+				"href": "doc/native.js.html",
+				"resources": [
+					"doc/res/prettify.js",
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.sons.css"
+				],
+				"refer": [
+					"doc/android.html",
+					"doc/ios.html"
+				],
+				"priority": 9
+			},
+			"plus/njs_efficient.html": {
+				"href": "plus/njs_efficient.html",
+				"resources": [],
+				"refer": [],
+				"priority": 10
+			},
+			"plus/njs.html": {
+				"href": "plus/njs.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/njs_android_shortcut.html",
+					"plus/njs_ios_gamecenter.html",
+					"doc/native.js.html",
+					"plus/njs_efficient.html",
+					"plus/doc.html"
+				],
+				"priority": 6
+			},
+			"doc/downloader.html": {
+				"href": "doc/downloader.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js",
+					"doc/res/prettify.sons.css"
+				],
+				"priority": 8
+			},
+			"plus/downloader.html": {
+				"href": "plus/downloader.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/downloader.html",
+					"plus/doc.html"
+				],
+				"priority": 7
+			},
+			"plus/nativeui_waiting.html": {
+				"href": "plus/nativeui_waiting.html",
+				"resources": [
+					"img/waiting.png",
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 8
+			},
+			"doc/nativeUI.html": {
+				"href": "doc/nativeUI.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js",
+					"doc/res/prettify.sons.css"
+				],
+				"priority": 10
+			},
+			"plus/nativeui.html": {
+				"href": "plus/nativeui.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/nativeui_waiting.html",
+					"doc/nativeUI.html",
+					"plus/doc.html"
+				],
+				"priority": 8
+			},
+			"doc/io.html": {
+				"href": "doc/io.html",
+				"resources": [
+					"doc/res/prettify.js",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.css",
+					"doc/res/doc.js"
+				],
+				"priority": 10
+			},
+			"plus/file.html": {
+				"href": "plus/file.html",
+				"resources": [
+					"img/fdir.png",
+					"img/ffile.png",
+					"img/fdisk.png",
+					"img/fup.png",
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/io.html",
+					"plus/doc.html"
+				],
+				"priority": 9
+			},
+			"doc/zip.html": {
+				"href": "doc/zip.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.sons.css",
+					"doc/res/prettify.js"
+				],
+				"priority": 12
+			},
+			"plus/zip.html": {
+				"href": "plus/zip.html",
+				"resources": [
+					"img/shake/1.jpg",
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/zip.html",
+					"plus/doc.html",
+					"index.html"
+				],
+				"priority": 10
+			},
+			"doc/push.html": {
+				"href": "doc/push.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.sons.css",
+					"doc/res/prettify.js"
+				],
+				"priority": 12
+			},
+			"plus/push.html": {
+				"href": "plus/push.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/push.html",
+					"plus/doc.html"
+				],
+				"priority": 11
+			},
+			"doc/statistic.html": {
+				"href": "doc/statistic.html",
+				"resources": [
+					"doc/res/prettify.sons.css",
+					"doc/res/prettify.js",
+					"doc/res/doc.css",
+					"doc/res/doc.js"
+				],
+				"priority": 13
+			},
+			"plus/statistic.html": {
+				"href": "plus/statistic.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/statistic.html",
+					"plus/doc.html"
+				],
+				"priority": 12
+			},
+			"doc/audio.html": {
+				"href": "doc/audio.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.sons.css",
+					"doc/res/prettify.js"
+				],
+				"priority": 14
+			},
+			"plus/audio.html": {
+				"href": "plus/audio.html",
+				"resources": [
+					"img/arecord.png",
+					"img/astop.png",
+					"audio/friendship.mp3",
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/audio.html",
+					"plus/doc.html"
+				],
+				"priority": 13
+			},
+			"plus/uploader_ret.html": {
+				"href": "plus/uploader_ret.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 14
+			},
+			"doc/uploader.html": {
+				"href": "doc/uploader.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js",
+					"doc/res/prettify.sons.css"
+				],
+				"priority": 16
+			},
+			"plus/uploader.html": {
+				"href": "plus/uploader.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/uploader_ret.html",
+					"doc/uploader.html",
+					"plus/doc.html"
+				],
+				"priority": 14
+			},
+			"doc/storage.html": {
+				"href": "doc/storage.html",
+				"resources": [
+					"doc/res/prettify.sons.css",
+					"doc/res/prettify.js",
+					"doc/res/doc.css",
+					"doc/res/doc.js"
+				],
+				"priority": 16
+			},
+			"plus/storage.html": {
+				"href": "plus/storage.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/storage.html",
+					"plus/doc.html"
+				],
+				"priority": 15
+			},
+			"doc/accelerometer.html": {
+				"href": "doc/accelerometer.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.sons.css",
+					"doc/res/prettify.js"
+				],
+				"priority": 17
+			},
+			"plus/accelerometer_shake.html": {
+				"href": "plus/accelerometer_shake.html",
+				"resources": [
+					"img/shakeup.png",
+					"img/shakedown.png",
+					"audio/shake.wav",
+					"img/shake/1.jpg",
+					"img/shake/2.jpg",
+					"img/shake/3.jpg",
+					"img/shake/4.jpg"
+				],
+				"refer": [],
+				"priority": 18
+			},
+			"plus/accelerometer.html": {
+				"href": "plus/accelerometer.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/accelerometer.html",
+					"plus/accelerometer_shake.html",
+					"plus/doc.html"
+				],
+				"priority": 16
+			},
+			"plus/navigator_status.html": {
+				"href": "plus/navigator_status.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 18
+			},
+			"doc/navigator.html": {
+				"href": "doc/navigator.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.sons.css",
+					"doc/res/prettify.js"
+				],
+				"priority": 19
+			},
+			"plus/navigator.html": {
+				"href": "plus/navigator.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/navigator_status.html",
+					"doc/navigator.html",
+					"plus/doc.html"
+				],
+				"priority": 17
+			},
+			"doc/messaging.html": {
+				"href": "doc/messaging.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.sons.css",
+					"doc/res/prettify.js"
+				],
+				"priority": 19
+			},
+			"plus/message.html": {
+				"href": "plus/message.html",
+				"resources": [
+					"img/helloh5.jpg",
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/messaging.html",
+					"plus/doc.html"
+				],
+				"priority": 18
+			},
+			"doc/speech.html": {
+				"href": "doc/speech.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.sons.css",
+					"doc/res/prettify.js"
+				],
+				"priority": 20
+			},
+			"plus/speech.html": {
+				"href": "plus/speech.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/speech.html",
+					"plus/doc.html"
+				],
+				"priority": 19
+			},
+			"doc/proximity.html": {
+				"href": "doc/proximity.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.sons.css",
+					"doc/res/prettify.js"
+				],
+				"priority": 21
+			},
+			"plus/proximity.html": {
+				"href": "plus/proximity.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/proximity.html",
+					"plus/doc.html"
+				],
+				"priority": 20
+			},
+			"plus/maps_map_sub.html": {
+				"href": "plus/maps_map_sub.html",
+				"resources": [
+					"css/common.css"
+				],
+				"priority": 22,
+				"refer": []
+			},
+			"plus/maps_map.html": {
+				"href": "plus/maps_map.html",
+				"resources": [
+					"js/common.js",
+					"logo.png",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/maps_map_sub.html",
+					"plus/doc.html"
+				],
+				"priority": 21
+			},
+			"doc/maps.html": {
+				"href": "doc/maps.html",
+				"resources": [
+					"doc/res/prettify.js",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.css",
+					"doc/res/doc.js"
+				],
+				"priority": 23
+			},
+			"plus/maps.html": {
+				"href": "plus/maps.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/maps_map.html",
+					"doc/maps.html",
+					"plus/doc.html"
+				],
+				"priority": 21
+			},
+			"plus/camera_image.html": {
+				"href": "plus/camera_image.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css"
+				],
+				"priority": 22,
+				"refer": [
+					"plus/doc.html"
+				]
+			},
+			"plus/camera_video.html": {
+				"href": "plus/camera_video.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js"
+				],
+				"priority": 23,
+				"refer": [
+					"plus/doc.html"
+				]
+			},
+			"doc/camera.html": {
+				"href": "doc/camera.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.sons.css",
+					"doc/res/prettify.js"
+				],
+				"priority": 25
+			},
+			"plus/camera.html": {
+				"href": "plus/camera.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/camera_image.html",
+					"plus/camera_video.html",
+					"doc/camera.html",
+					"plus/doc.html"
+				],
+				"priority": 22
+			},
+			"doc/device.html": {
+				"href": "doc/device.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js",
+					"doc/res/prettify.sons.css"
+				],
+				"priority": 24
+			},
+			"plus/device.html": {
+				"href": "plus/device.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/device.html",
+					"plus/doc.html"
+				],
+				"priority": 23
+			},
+			"doc/orientation.html": {
+				"href": "doc/orientation.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.sons.css",
+					"doc/res/prettify.js"
+				],
+				"priority": 25
+			},
+			"plus/orientation_level.html": {
+				"href": "plus/orientation_level.html",
+				"resources": [
+					"img/orientationb.png",
+					"img/orientationl.png",
+					"img/orientationbg.png"
+				],
+				"priority": 26
+			},
+			"plus/orientation_compass.html": {
+				"href": "plus/orientation_compass.html",
+				"resources": [
+					"img/orientationa.png",
+					"img/orientationbg.png",
+					"img/orientationc.png"
+				],
+				"refer": [],
+				"priority": 27
+			},
+			"plus/orientation.html": {
+				"href": "plus/orientation.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/orientation.html",
+					"plus/orientation_level.html",
+					"plus/orientation_compass.html",
+					"plus/doc.html"
+				],
+				"priority": 24
+			},
+			"doc/gallery.html": {
+				"href": "doc/gallery.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.sons.css",
+					"doc/res/prettify.js"
+				],
+				"priority": 26
+			},
+			"plus/gallery.html": {
+				"href": "plus/gallery.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/gallery.html",
+					"plus/doc.html"
+				],
+				"priority": 25
+			},
+			"plus/webview_pullrefresh_custom.html": {
+				"href": "plus/webview_pullrefresh_custom.html",
+				"resources": [
+					"css/common.css"
+				],
+				"priority": 26,
+				"refer": []
+			},
+			"plus/webview_pullhead_custom.html": {
+				"href": "plus/webview_pullhead_custom.html",
+				"resources": [
+					"img/pull_arrow.png",
+					"img/pull_fresh.png",
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/webview_pullrefresh_custom.html",
+					"plus/doc.html"
+				],
+				"priority": 26
+			},
+			"plus/webview_float.html": {
+				"href": "plus/webview_float.html",
+				"resources": [
+					"img/ui.png",
+					"js/common.js",
+					"css/common.css"
+				],
+				"priority": 27,
+				"refer": [
+					"plus/doc.html"
+				]
+			},
+			"plus/webview_new.html": {
+				"href": "plus/webview_new.html",
+				"resources": [
+					"img/ui.png"
+				],
+				"refer": [],
+				"priority": 29
+			},
+			"plus/webview_animation.html": {
+				"href": "plus/webview_animation.html",
+				"resources": [
+					"js/common.js"
+				],
+				"refer": [
+					"plus/webview_new.html"
+				],
+				"priority": 29
+			},
+			"plus/webview_pullrefresh.html": {
+				"href": "plus/webview_pullrefresh.html",
+				"resources": [],
+				"priority": 30,
+				"refer": []
+			},
+			"plus/webview_pullhead.html": {
+				"href": "plus/webview_pullhead.html",
+				"resources": [],
+				"refer": [
+					"plus/webview_pullrefresh.html"
+				],
+				"priority": 30
+			},
+			"doc/webview.html": {
+				"href": "doc/webview.html",
+				"resources": [
+					"doc/res/prettify.js",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.css",
+					"doc/res/doc.js"
+				],
+				"priority": 31
+			},
+			"plus/webview_embed.html": {
+				"href": "plus/webview_embed.html",
+				"resources": [
+					"js/common.js"
+				],
+				"refer": [],
+				"priority": 32
+			},
+			"plus/webview_mask_side.html": {
+				"href": "plus/webview_mask_side.html",
+				"resources": [],
+				"refer": [],
+				"priority": 33
+			},
+			"plus/webview_mask.html": {
+				"href": "plus/webview_mask.html",
+				"resources": [
+					"plus/webview_mask_side.html"
+				],
+				"refer": [],
+				"priority": 33
+			},
+			"plus/webview.html": {
+				"href": "plus/webview.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/webview_pullhead_custom.html",
+					"plus/webview_float.html",
+					"plus/webview_animation.html",
+					"plus/webview_pullhead.html",
+					"doc/webview.html",
+					"plus/webview_embed.html",
+					"plus/webview_mask.html",
+					"plus/doc.html"
+				],
+				"priority": 26
+			},
+			"doc/geolocation.html": {
+				"href": "doc/geolocation.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.sons.css",
+					"doc/res/prettify.js"
+				],
+				"priority": 28
+			},
+			"plus/geolocation.html": {
+				"href": "plus/geolocation.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/geolocation.html",
+					"plus/doc.html"
+				],
+				"priority": 27
+			},
+			"about.html": {
+				"href": "about.html",
+				"resources": [
+					"js/common.js",
+					"img/h5p.jpg",
+					"img/qr.png",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 28
+			},
+			"doc/events.html": {
+				"href": "doc/events.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.sons.css",
+					"doc/res/prettify.js"
+				],
+				"priority": 30
+			},
+			"plus/events.html": {
+				"href": "plus/events.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/events.html",
+					"plus/doc.html"
+				],
+				"priority": 29
+			},
+			"doc/cache.html": {
+				"priority": 0,
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js",
+					"doc/res/prettify.sons.css"
+				],
+				"refer": []
+			},
+			"doc/console.html": {
+				"priority": 0,
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js",
+					"doc/res/prettify.sons.css"
+				],
+				"refer": []
+			},
+			"doc/contacts.html": {
+				"priority": 0,
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js",
+					"doc/res/prettify.sons.css"
+				],
+				"refer": []
+			},
+			"doc/interface-orientation.html": {
+				"priority": 0,
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js",
+					"doc/res/prettify.sons.css"
+				],
+				"refer": []
+			},
+			"doc/key.html": {
+				"priority": 0,
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js",
+					"doc/res/prettify.sons.css"
+				],
+				"refer": []
+			},
+			"doc/nativeobj.html": {
+				"priority": 0,
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js",
+					"doc/res/prettify.sons.css"
+				],
+				"refer": []
+			},
+			"doc/splashscreen.html": {
+				"priority": 0,
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js",
+					"doc/res/prettify.sons.css"
+				],
+				"refer": []
+			},
+			"doc/ui.html": {
+				"priority": 0,
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js",
+					"doc/res/prettify.sons.css"
+				],
+				"refer": []
+			},
+			"plus/payment_iap.html": {
+				"href": "plus/payment_iap.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 0
+			},
+			"Uppicture.html": {
+				"resources": [
+					"css/common.css",
+					"css/mui.css",
+					"js/my/variable.js",
+					"js/mui.min.js",
+					"js/my/app.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"login.html": {
+				"resources": [
+					"images/line2.png",
+					"images/logo.png",
+					"js/my/variable.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"images/weixin.png",
+					"images/qq.png",
+					"css/mui.css",
+					"js/my/app.js",
+					"images/weibo.png",
+					"reg.html",
+					"forget.html",
+					"locationMain.html",
+					"main.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"reg.html": {
+				"resources": [
+					"images/line2.png",
+					"images/logo.png",
+					"js/my/variable.js",
+					"js/mui.min.js",
+					"css/mui.css",
+					"fonts/mui.ttf",
+					"login.html",
+					"css/iconfont.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"setData.html": {
+				"resources": [
+					"images/line2.png",
+					"js/my/variable.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"images/mypicture.png",
+					"css/mui.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"forget.html": {
+				"resources": [
+					"js/my/variable.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.css",
+					"forget-sure.html",
+					"login.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"forget-sure.html": {
+				"resources": [
+					"js/my/variable.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.css",
+					"forget.html",
+					"personaldata.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"locationMain.html": {
+				"resources": [
+					"images/line2.png",
+					"images/slope.png",
+					"images/line1.png",
+					"images/dataCollectStart.png",
+					"js/my/variable.js",
+					"images/dataHistoryEnd.png",
+					"images/mapEnd.png",
+					"images/line3.png",
+					"css/mui.css",
+					"js/immersed.js",
+					"images/StartBut.png",
+					"js/common.js",
+					"images/EndBut.png",
+					"js/mui.min.js",
+					"css/common.css",
+					"images/setMainEnd.png",
+					"images/speed.png",
+					"images/accspeed.png",
+					"images/high.png",
+					"js/my/app.js",
+					"images/longitude.png",
+					"maps_map.html",
+					"dayHistoryData.html",
+					"images/dataHistoryStart.png",
+					"images/dataCollectEnd.png",
+					"setMian.html",
+					"login.html",
+					"menu.html",
+					"css/iconfont.css",
+					"fonts/iconfont.ttf"
+				],
+				"refer": [
+					"dayHistoryMap.html",
+					"map.html"
+				],
+				"priority": 0
+			},
+			"maps_map.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"js/common.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"css/mui.css",
+					"js/immersed.js",
+					"images/line2.png",
+					"images/dataCollectStart.png",
+					"images/dataHistoryEnd.png",
+					"images/mapEnd.png",
+					"images/setMainEnd.png",
+					"dayHistoryData.html",
+					"locationMain.html",
+					"css/iconfont.css",
+					"fonts/iconfont.ttf"
+				],
+				"refer": [
+					"menu.html"
+				],
+				"priority": 0
+			},
+			"dayHistoryData.html": {
+				"resources": [
+					"js/mui.pullToRefresh.js",
+					"js/my/imgSlider.js",
+					"js/mui.pullToRefresh.material.js",
+					"images/month_year.png",
+					"images/weekend1.png",
+					"images/dataHistoryStart.png",
+					"images/day2.png",
+					"js/mui.lazyload.js",
+					"js/jquery.js",
+					"js/mui.lazyload.img.js",
+					"images/dataCollectEnd.png",
+					"images/line2.png",
+					"js/my/variable.js",
+					"images/mapEnd.png",
+					"css/mui.css",
+					"js/common.js",
+					"js/mui.min.js",
+					"images/setMainEnd.png",
+					"maps_map.html",
+					"setMian.html",
+					"fonts/mui.ttf",
+					"js/immersed.js",
+					"line-marker.html",
+					"images/year1.png",
+					"images/month1.png",
+					"images/mapthumb.png",
+					"dayHistoryMap.html",
+					"weekHistoryData.html",
+					"yearHistoryData.html",
+					"monthHistoryData.html",
+					"menu.html",
+					"locationMain.html",
+					"tab-webview-main.html",
+					"css/iconfont.css",
+					"fonts/iconfont.ttf",
+					"map.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"line-marker.html": {
+				"resources": [
+					"images/weekend2.png",
+					"images/day1.png",
+					"images/line2.png",
+					"js/mui.pullToRefresh.js",
+					"js/my/variable.js",
+					"images/mapEnd.png",
+					"js/mui.pullToRefresh.material.js",
+					"images/dataHistoryStart.png",
+					"js/mui.lazyload.js",
+					"css/mui.css",
+					"js/immersed.js",
+					"js/mui.lazyload.img.js",
+					"js/my/imgSlider.js",
+					"js/common.js",
+					"js/mui.min.js",
+					"images/month_year.png",
+					"images/setMainEnd.png",
+					"js/jquery.js",
+					"images/dataCollectEnd.png",
+					"maps_map.html",
+					"locationMain.html",
+					"monthHistoryData.html",
+					"yearHistoryData.html"
+				],
+				"refer": [
+					"dayHistoryData.html"
+				],
+				"priority": 0
+			},
+			"setMian.html": {
+				"resources": [
+					"images/SET-main2.png",
+					"images/setMainStart.png",
+					"fonts/mui.ttf",
+					"images/dataCollectEnd.png",
+					"images/line2.png",
+					"js/common.js",
+					"js/my/variable.js",
+					"js/mui.min.js",
+					"images/dataHistoryEnd.png",
+					"images/mapEnd.png",
+					"css/mui.css",
+					"js/my/app.js",
+					"images/mypicture.png",
+					"downpackage.html",
+					"personaldata.html",
+					"systemset.html",
+					"Integralranking.html",
+					"integralrules.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"downpackage.html": {
+				"resources": [
+					"js/my/variable.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"setMian.html",
+					"css/mui.css",
+					"js/my/app.js",
+					"menu.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"personaldata.html": {
+				"resources": [
+					"setMian.html",
+					"menu.html",
+					"js/common.js",
+					"images/mypicture.png",
+					"js/my/variable.js",
+					"js/mui.min.js",
+					"css/mui.css",
+					"js/my/app.js",
+					"main.html",
+					"images/line2.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"systemset.html": {
+				"resources": [
+					"images/line2.png",
+					"fonts/mui.ttf",
+					"setMian.html",
+					"css/mui.css",
+					"menu.html",
+					"main.html"
+				],
+				"refer": [
+					"login.html"
+				],
+				"priority": 0
+			},
+			"Integralranking.html": {
+				"resources": [
+					"images/SET-main2.png",
+					"fonts/mui.ttf",
+					"css/mui.css",
+					"menu.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"yearHistoryData.html": {
+				"resources": [
+					"monthHistoryData.html",
+					"images/year2.png",
+					"js/mui.pullToRefresh.js",
+					"js/my/variable.js",
+					"images/weekend1.png",
+					"js/mui.pullToRefresh.material.js",
+					"fonts/mui.ttf",
+					"js/mui.lazyload.js",
+					"css/mui.css",
+					"js/immersed.js",
+					"js/mui.lazyload.img.js",
+					"images/day1.png",
+					"js/my/imgSlider.js",
+					"js/common.js",
+					"js/mui.min.js",
+					"images/month1.png",
+					"js/jquery.js",
+					"dayHistoryData.html",
+					"weekHistoryData.html",
+					"menu.html",
+					"maps_map.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"monthHistoryData.html": {
+				"resources": [
+					"line-marker.html",
+					"images/day1.png",
+					"yearHistoryData.html",
+					"images/month2.png",
+					"dayHistoryData.html",
+					"weekHistoryData.html",
+					"js/mui.pullToRefresh.js",
+					"js/my/variable.js",
+					"images/weekend1.png",
+					"js/mui.pullToRefresh.material.js",
+					"js/mui.lazyload.js",
+					"css/mui.css",
+					"js/immersed.js",
+					"js/mui.lazyload.img.js",
+					"js/my/imgSlider.js",
+					"js/common.js",
+					"js/mui.min.js",
+					"js/jquery.js",
+					"images/year1.png",
+					"menu.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"dayHistoryMap.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"js/common.js",
+					"js/mui.min.js",
+					"css/mui.css",
+					"js/immersed.js"
+				],
+				"refer": [
+					"locationMain.html",
+					"main.html"
+				],
+				"priority": 0
+			},
+			"weekHistoryData.html": {
+				"resources": [
+					"images/weekend2.png",
+					"images/day1.png",
+					"images/dataHistoryStart.png",
+					"images/dataCollectEnd.png",
+					"images/line2.png",
+					"js/mui.pullToRefresh.js",
+					"js/my/variable.js",
+					"images/mapEnd.png",
+					"js/mui.pullToRefresh.material.js",
+					"js/mui.lazyload.js",
+					"css/mui.css",
+					"js/immersed.js",
+					"js/mui.lazyload.img.js",
+					"js/my/imgSlider.js",
+					"js/common.js",
+					"images/year1.png",
+					"js/mui.min.js",
+					"images/setMainEnd.png",
+					"images/month1.png",
+					"js/jquery.js",
+					"monthHistoryData.html",
+					"dayHistoryData.html",
+					"css/iconfont.css",
+					"fonts/iconfont.ttf",
+					"menu.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"menu.html": {
+				"resources": [
+					"personaldata.html",
+					"images/setMainStart.png",
+					"images/mypicture.png",
+					"images/dataCollectEnd.png",
+					"Integralranking.html",
+					"integralrules.html",
+					"dayHistoryData.html",
+					"locationMain.html",
+					"images/line2.png",
+					"js/common.js",
+					"images/dataHistoryEnd.png",
+					"images/mapEnd.png",
+					"js/my/variable.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.css",
+					"js/my/app.js",
+					"systemset.html",
+					"downpackage.html",
+					"css/iconfont.css",
+					"fonts/iconfont.ttf",
+					"maps_map.html",
+					"map.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"integralrules.html": {
+				"resources": [
+					"menu.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"tab-webview-main.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"dayHistoryData.html",
+					"menu.html",
+					"js/mui.min.js",
+					"locationMain.html"
+				],
+				"refer": [
+					"maps_map.html"
+				],
+				"priority": 0
+			},
+			"main.html": {
+				"resources": [
+					"locationMain.html",
+					"css/mui.min.css",
+					"login.html",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/iconfont.css",
+					"fonts/iconfont.ttf",
+					"images/img/w0.png",
+					"second/chazuo.html",
+					"second/turnLight.html",
+					"second/scenario.html",
+					"second/windowSet.html",
+					"systemset.html",
+					"second/huanjing.html"
+				],
+				"refer": [
+					"maps_map.html",
+					"dayHistoryData.html",
+					"menu.html"
+				],
+				"priority": 0
+			},
+			"map.html": {
+				"resources": [
+					"js/common.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.css",
+					"js/immersed.js",
+					"images/EndBut.png",
+					"images/StartBut.png",
+					"css/common.css",
+					"css/iconfont.css",
+					"fonts/iconfont.ttf"
+				],
+				"refer": [
+					"dayHistoryData.html",
+					"menu.html",
+					"locationMain.html"
+				],
+				"priority": 0
+			},
+			"second/chazuo.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"images/you2.png",
+					"css/iconfont.css",
+					"css/mui.min.css",
+					"fonts/iconfont.ttf",
+					"main.html",
+					"second/chazuotime.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"second/chazuotime.html": {
+				"resources": [
+					"second/chazuo.html",
+					"js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"second/turnLight.html": {
+				"resources": [
+					"images/img/light_gray.png",
+					"main.html",
+					"images/img/button_green.png",
+					"images/img/button_red.png",
+					"images/img/button_blue.png",
+					"second/lighttime.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"second/scenario.html": {
+				"resources": [
+					"main.html",
+					"js/app.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"second/windowSet.html": {
+				"resources": [
+					"main.html",
+					"fonts/mui.ttf",
+					"css/iconfont.css",
+					"css/mui.min.css",
+					"fonts/iconfont.ttf",
+					"images/img/w0.png",
+					"images/you3.png",
+					"images/you3.jpg"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"second/lighttime.html": {
+				"resources": [
+					"second/turnLight.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"second/huanjing.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"images/you4.png",
+					"css/iconfont.css",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"myLog.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"css/iconfont.css",
+					"fonts/iconfont.ttf",
+					"css/mui.css"
+				],
+				"refer": [],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"sa.png",
+				"sa@2x.png",
+				"sa@3x.png",
+				"js/update.json"
+			]
+		}
+	},
+	"unpackage": [
+		"js/update.json"
+	]
+}

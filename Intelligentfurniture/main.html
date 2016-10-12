@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>智能灯控</title>
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/iconfont.css" />
+		<style>
+			.mui-input-clear {
+				margin-top: 50px;
+			}
+			
+			#main-picture {
+				margin-left: 5%;
+				height: 80px;
+				width: 90%;
+			}
+			
+			.mui-content {
+				margin-top: -40px;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">智能家居</h1>
+		</header>
+		<div class="mui-input-clear">
+			<img id="main-picture" src="images/img/w0.png" />
+		</div>
+		<div class="mui-content">
+			<ul class="mui-table-view mui-grid-view mui-grid-9">
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="javascript:void(0);" id="my-btn-auto">
+						<span class="mui-icon iconfont icon-auto"></span>
+						<div class="mui-media-body" style="">自动</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a id="securityAlarm" href="javascript:void(0);">
+						<span class="mui-icon iconfont icon-safe_warn"></span>
+						<div class="mui-media-body">安防警报</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a onclick="window.location.href='second/scenario.html'">
+						<span class="mui-icon iconfont icon-qingjingmoshi" style="color: #f4c600;"></span>
+						<div class="mui-media-body">情景模式</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="#" onclick="closeAndopenAll(1)">
+						<span class="mui-icon iconfont icon-quanbuqiyong"></span>
+						<div class="mui-media-body">全开</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a href="#" onclick="closeAndopenAll(0)">
+						<span class="mui-icon iconfont icon-guanbi"></span>
+						<div class="mui-media-body">全关</div>
+					</a>
+				</li>
+
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a onclick="window.location.href='second/turnLight.html'">
+						<span class="mui-icon iconfont icon-dengpao" style="color: #ea8010;"></span>
+						<div class="mui-media-body">灯光控制</div>
+					</a>
+				</li>
+
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a onclick="window.location.href='second/windowSet.html'">
+						<span class="mui-icon iconfont icon-chuanglian" style="color: #56abe4;"></span>
+						<div class="mui-media-body">窗帘控制</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a onclick="window.location.href='second/chazuo.html'">
+						<span class="mui-icon iconfont icon-chazuo" style="color: #eb4f38;"></span>
+						<div class="mui-media-body">智能插座</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+					<a id="huanjing" href="javascript:void(0);">
+						<span class="mui-icon iconfont icon-jiance" style="color: #33475f;"></span>
+						<div class="mui-media-body">环境检测</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="mui-bar mui-bar-footer">
+			<nav class="mui-bar mui-bar-tab">
+				<a id="locationMain" class="mui-tab-item ">
+					<span class="mui-icon iconfont icon-qishi01"></span>
+					<span class="mui-tab-label">通知</span>
+				</a>
+				<a id="map" class="mui-tab-item  mui-active" onclick="window.location.href='main.html'">
+					<span class="mui-icon iconfont icon-zhuye"></span>
+					<span class="mui-tab-label">主页</span>
+				</a>
+				<a id="dayHistoryData" class="mui-tab-item " onclick="window.location.href='systemset.html'">
+					<span class="mui-icon iconfont icon-wo"></span>
+					<span class="mui-tab-label">我</span>
+				</a>
+			</nav>
+		</div>
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/my/variable.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init();
+			//所有的plus-*方法写在mui.plusReady中或者后面。
+			mui.plusReady(function() {
+				/****************************************************************************
+				 * 初始化按钮状态
+				 */
+				var settings = app.getSettings(); //获取本地设置集
+				//判断自动模式状态是否存在，为空就赋值false
+				if(settings.autoIsOpen == null) {
+					settings.autoIsOpen = false;
+				} else {
+					if(settings.autoIsOpen == true)
+						mui(".icon-auto")[0].style.color = "#11cd6e";
+				}
+				//判断安防警报状态是否存在，为空就赋值false
+				if(settings.securityAlarmIsOpen == null) {
+					settings.securityAlarmIsOpen = false;
+				} else {
+					if(settings.securityAlarmIsOpen == true)
+						mui(".icon-safe_warn")[0].style.color = "#11cd6e";
+					else
+						mui(".icon-safe_warn")[0].style.color = "#787878";
+				}
+				//判断全开全关是否存在，为空就赋值0,0代表全关，1代表全开,2代表没有全操作
+				if(settings.closeAndopenAllIsOpen == null) {
+					settings.closeAndopenAllIsOpen = 2;
+				}
+				if(settings.closeAndopenAllIsOpen == 0) {
+					mui(".icon-guanbi")[0].style.color = "#11cd6e";
+				}
+				if(settings.closeAndopenAllIsOpen == 1) {
+					mui(".icon-quanbuqiyong")[0].style.color = "#11cd6e";
+				}
+
+				/****************************************************************************
+				 * 自动
+				 */
+				var btn_auto = document.getElementById("my-btn-auto");
+				//监听点击事件
+				btn_auto.addEventListener("tap", function() {
+					var autoValue = 0;
+					//判断自动模式,如果true那么就要发送0去让它关闭（三目运算）
+					autoValue = settings.autoIsOpen ? 0 : 1;
+					//关闭自动模式
+
+					mui.ajax(myUrl + 'Command_hand', {
+						data: {
+							MacName: plus.storage.getItem("myMac"),
+							Auto: autoValue
+						},
+						dataType: 'json', //服务器返回json格式数据
+						type: 'post', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						success: function(data) {
+							//								console.log(data.json);
+							//服务器返回响应，根据响应结果，分析是否登录成功；
+							if(data.json == 1) {
+								if(autoValue = 1) {
+									mui(".icon-auto")[0].style.color = "#11cd6e";
+									settings.autoIsOpen = true;
+								} else {
+									mui(".icon-auto")[0].style.color = "#787878";
+									settings.autoIsOpen = false;
+								}
+								app.setSettings(settings);
+							}
+							if(data.json == 0)
+								mui.toast(codes[0]);
+							if(data.json == 2)
+								mui.toast(codes[0]);
+						},
+						error: function(xhr, type, errorThrown) {
+							//异常处理；
+							plus.nativeUI.toast('网络异常');
+							console.log(type);
+						}
+					});
+
+				});
+				/****************************************************************************
+				 *环境检测 
+				 */
+				var environmentParameter = null;
+				//拉取环境参数
+				sendData();
+				//点击环境检测
+				mui("#huanjing")[0].addEventListener("tap", function() {
+					if(environmentParameter != null) {
+						//跳转页面和传参数
+						mui.openWindow({
+							url: "second/huanjing.html",
+							id: "huanjing.html",
+							show: {
+								aniShow: 'pop-in',
+								duration: 300
+							},
+							extras: {
+								environmentParameter: JSON.stringify(environmentParameter) //扩展参数
+							}
+						});
+					} else {
+						mui.toast("环境检测异常，查看硬件连接");
+					}
+
+				});
+
+				//从服务端拉取环境参数
+				function sendData() {
+					var w = null; //等待动画
+					mui.ajax(myUrl + 'Environment_getEnvironmentParameter', {
+						data: {
+							MacName: plus.storage.getItem("myMac")
+						},
+						dataType: 'json', //服务器返回json格式数据
+						type: 'post', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						beforeSend: function() {
+							w = plus.nativeUI.showWaiting("");
+						},
+						success: function(data) {
+							w.close();
+							var eP = data.environmentParameter;
+							if(eP == "success") {
+								if(data.json.C != null) {
+									if(data.json.C == 0) {
+										mui.toast(codes[0]);
+										return;
+									}
+									if(data.json.C == 4) {
+										mui.toast(codes[4]);
+										return;
+									}
+									if(data.json.C == 5) {
+										mui.toast(codes[5]);
+										return;
+									}
+								} else {
+									environmentParameter = data.json;
+								}
+							} else {
+								mui.toast("服务器拉取失败");
+							}
+
+						},
+						error: function(xhr, type, errorThrown) {
+							w.close();
+							//异常处理；
+							console.log(type);
+							plus.nativeUI.toast("网络异常,请求失败");
+						}
+					});
+				}
+				/****************************************************************************
+				 * 全关和全开方法(通过index判断是关还是开)
+				 * index:1全開，0全關
+				 */
+				function closeAndopenAll(index) {
+					var action_url = myUrl;
+					if(index == 1)
+						action_url += "Command_openAll";
+					else
+						action_url += "Command_closeAll";
+					var w = null; //等待动画
+					mui.ajax(action_url, {
+						data: {
+							MacName: plus.storage.getItem("myMac")
+						},
+						dataType: 'json', //服务器返回json格式数据
+						type: 'post', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						beforeSend: function() {
+							w = plus.nativeUI.showWaiting();
+						},
+						success: function(data) {
+							w.close();
+							if(data.json == 0) {
+								mui.toast(codes[0]);
+								return;
+							}
+							if(data.json == 1) {
+								mui.toast(codes[1]);
+								if(index == 1) {
+									mui(".icon-guanbi")[0].style.color = "#787878";
+									mui(".icon-quanbuqiyong")[0].style.color = "#11cd6e";
+									settings.closeAndopenAllIsOpen = 1;
+									app.setSettings(settings);
+								} else {
+									mui(".icon-quanbuqiyong")[0].style.color = "#787878";
+									mui(".icon-guanbi")[0].style.color = "#11cd6e";
+									settings.closeAndopenAllIsOpen = 0;
+									app.setSettings(settings);
+								}
+								return;
+							}
+							if(data.json == 2) {
+								mui.toast(codes[2]);
+								return;
+							}
+
+						},
+						error: function(xhr, type, errorThrown) {
+							w.close();
+							//异常处理；
+							console.log(type);
+							plus.nativeUI.toast("网络异常,请求失败");
+						}
+					});
+				}
+				/****************************************************************************
+				 * 安防警报
+				 */
+				mui("#securityAlarm")[0].addEventListener("tap", function() {
+					if(settings.securityAlarmIsOpen == false)
+						securityAlarm(1);
+					else
+						securityAlarm(0);
+
+				});
+
+				function securityAlarm(index) {
+					var action_url = myUrl + "Command_securityAlarm";
+					var w = null; //等待动画
+					mui.ajax(action_url, {
+						data: {
+							MacName: plus.storage.getItem("myMac"),
+							SecurityAlarm: index //注：0为关闭,1为开启
+
+						},
+						dataType: 'json', //服务器返回json格式数据
+						type: 'post', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						beforeSend: function() {
+							w = plus.nativeUI.showWaiting();
+						},
+						success: function(data) {
+							w.close();
+							if(data.json == 0) {
+								mui.toast(codes[0]);
+								return;
+							}
+							if(data.json == 1) {
+								mui.toast(codes[1]);
+								if(index == 1) {
+									mui(".icon-safe_warn")[0].style.color = "#11cd6e";
+								} else {
+									mui(".icon-safe_warn")[0].style.color = "#787878";
+								}
+								settings.securityAlarmIsOpen = index;
+								app.setSettings(settings);
+								return;
+							}
+							if(data.json == 2) {
+								mui.toast(codes[2]);
+								return;
+							}
+
+						},
+						error: function(xhr, type, errorThrown) {
+							w.close();
+							//异常处理；
+							console.log(type);
+							plus.nativeUI.toast("网络异常,请求失败");
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+
+</html>

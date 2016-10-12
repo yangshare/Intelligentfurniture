@@ -1,0 +1,200 @@
+{
+  "login.html": {
+    "resources": [
+      "js/app.js",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/style.css",
+      "forget_password.html"
+    ],
+    "refer": [
+      "reg.html",
+      "forget_password.html"
+    ]
+  },
+  "reg.html": {
+    "resources": [
+      "js/common.js",
+      "js/app.js",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/style.css"
+    ],
+    "refer": []
+  },
+  "forget_password.html": {
+    "resources": [
+      "login.html"
+    ],
+    "refer": [
+      "login.html"
+    ]
+  },
+  "index.html": {
+    "resources": [
+      "js/app.js",
+      "images/img/humidity.png",
+      "js/mui.min.js",
+      "images/img/c22.png",
+      "images/img/temperature.png",
+      "fonts/mui.ttf",
+      "images/img/c3.png",
+      "css/mui.min.css",
+      "css/style.css",
+      "images/img/w0.png",
+      "images/img/c1.png",
+      "css/bootstrap.min.css",
+      "login.html"
+    ],
+    "refer": []
+  },
+  "second/turnLight.html": {
+    "resources": [
+      "images/img/light_gray.png",
+      "images/img/button_green.png",
+      "images/img/button_red.png",
+      "images/img/button_blue.png",
+      "js/app.js",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "main.html",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "fonts/iconfont.ttf",
+      "second/time.html",
+      "second/lighttime.html"
+    ],
+    "refer": [
+      "main.html"
+    ]
+  },
+  "menu.html": {
+    "resources": [
+      "second/turnLight.html",
+      "css/iconfont2.css"
+    ],
+    "refer": [
+      "second/time.html",
+      "second/turnLight.html",
+      "second/scenario.html",
+      "index.html"
+    ]
+  },
+  "second/scenario.html": {
+    "resources": [
+      "css/iconfont.css",
+      "fonts/mui.ttf",
+      "main.html",
+      "js/app.js",
+      "js/mui.min.js"
+    ],
+    "refer": [
+      "main.html"
+    ]
+  },
+  "main.html": {
+    "resources": [
+      "css/iconfont2.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/img/w0.png",
+      "css/iconfont.css",
+      "fonts/iconfont.ttf",
+      "second/turnLight.html",
+      "second/windowSet.html",
+      "systemset.html",
+      "second/scenario.html",
+      "second/chazuo.html",
+      "second/huanjing.html"
+    ],
+    "refer": [
+      "systemset.html",
+      "second/windowSet.html",
+      "second/turnLight.html",
+      "second/scenario.html",
+      "second/huanjing.html"
+    ]
+  },
+  "second/time.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "second/turnLight.html"
+    ],
+    "refer": []
+  },
+  "second/windowSet.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "images/img/w0.png",
+      "fonts/iconfont.ttf",
+      "main.html",
+      "images/you3.png",
+      "images/you3.jpg"
+    ],
+    "refer": []
+  },
+  "systemset.html": {
+    "resources": [
+      "main.html",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "fonts/iconfont.ttf",
+      "images/img/w0.png"
+    ],
+    "refer": [
+      "main.html"
+    ]
+  },
+  "second/chazuo.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "images/you2.png",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "fonts/iconfont.ttf",
+      "main.html",
+      "second/chazuotime.html"
+    ],
+    "refer": []
+  },
+  "second/chazuotime.html": {
+    "resources": [
+      "second/chazuo.html",
+      "js/mui.min.js"
+    ],
+    "refer": [
+      "second/chazuo.html"
+    ]
+  },
+  "second/lighttime.html": {
+    "resources": [
+      "second/turnLight.html"
+    ],
+    "refer": [
+      "second/turnLight.html"
+    ]
+  },
+  "second/huanjing.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "images/you4.png",
+      "css/iconfont.css",
+      "css/mui.min.css"
+    ]
+  },
+  "myLog.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "fonts/iconfont.ttf",
+      "css/mui.css"
+    ]
+  }
+}
