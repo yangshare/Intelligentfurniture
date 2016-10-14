@@ -42,16 +42,67 @@
 			</div>
 		</div>
 		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/my/variable.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			mui.init();
 			mui.plusReady(function() {
-				//取出首页传过来的环境参数
-				var environmentParameter = plus.webview.currentWebview().environmentParameter;
-				environmentParameter = JSON.parse(environmentParameter);
-				mui("#temperature")[0].innerText = environmentParameter.T;
-				mui("#humidity")[0].innerText = environmentParameter.H;
-				mui("#Light_intensity")[0].innerText = environmentParameter.L;
-				mui("#PM")[0].innerText = environmentParameter.Q;
+				var environmentParameter = null;
+
+				//拉取环境参数
+				sendData();
+				//从服务端拉取环境参数
+				function sendData() {
+					var w = null; //等待动画
+					mui.ajax(myUrl + 'Environment_getEnvironmentParameter', {
+						data: {
+							MacName: plus.storage.getItem("myMac")
+						},
+						dataType: 'json', //服务器返回json格式数据
+						type: 'post', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						beforeSend: function() {
+							w = plus.nativeUI.showWaiting("");
+						},
+						success: function(data) {
+							w.close();
+							var eP = data.environmentParameter;
+							if(eP == "success") {
+								if(data.json.C != null) {
+									if(data.json.C == 0) {
+										mui.toast(codes[0]);
+										return;
+									}
+									if(data.json.C == 4) {
+										mui.toast(codes[4]);
+										return;
+									}
+									if(data.json.C == 5) {
+										mui.toast(codes[5]);
+										return;
+									}
+								} else {
+									environmentParameter = data.json;
+									mui("#temperature")[0].innerText = environmentParameter.T;
+									mui("#humidity")[0].innerText = environmentParameter.H;
+									mui("#Light_intensity")[0].innerText = environmentParameter.L;
+									mui("#PM")[0].innerText = environmentParameter.Q;
+								}
+							} else {
+								mui.toast("服务器拉取失败");
+							}
+
+						},
+						error: function(xhr, type, errorThrown) {
+							w.close();
+							//异常处理；
+							console.log(type);
+							plus.nativeUI.toast("网络异常,请求失败");
+						}
+					});
+				}
+
+				//				environmentParameter = JSON.parse(environmentParameter);
+
 			});
 		</script>
 	</body>

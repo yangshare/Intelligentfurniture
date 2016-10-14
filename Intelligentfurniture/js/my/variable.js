@@ -2,6 +2,7 @@
  * ajax访问地址
  */
 var myUrl = "http://antonio0827.uicp.io/ZNDK/"; //春花生壳
+//var myUrl = "http://192.168.0.1:8080/ZNDK/"; //春花生壳
 /**
  * 前台toast提示码
  * 0-失败 

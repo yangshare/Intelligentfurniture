@@ -121,48 +121,37 @@
 						}
 						//等待动画
 						var wt = null;
-						//判断是开灯还是关灯
-						var ajaxData ={};
-						if(scene == 7) {
-							ajaxData = {
-								MacName: plus.storage.getItem("myMac"),
-								Colors: 4,
-								Light: 1
-							};
-						} else {
-							ajaxData = {
-								MacName: plus.storage.getItem("myMac"),
+						console.log("scene=="+scene);
+						mui.ajax(myUrl + 'Command_scene', {
+							data: {
+								MacName:plus.storage.getItem("myMac"),
 								Scene: scene
-							};
+							},
+							beforeSend: function() {
+								wt = plus.nativeUI.showWaiting();
+							},
+							dataType: 'json', //服务器返回json格式数据
+							type: 'post', //HTTP请求类型
+							timeout: 10000, //超时时间设置为10秒；
+							success: function(data) {
+								wt.close();
+								if(data.json == 1) {
+									settings.scene = scene - 1;
+									app.setSettings(settings);
+									plus.nativeUI.toast('设置成功');
 
-						}
-						mui.ajax(myUrl + 'Command_hand', {
-								data: ajaxData,
-								beforeSend: function() {
-									wt = plus.nativeUI.showWaiting("提交");
-								},
-								dataType: 'json', //服务器返回json格式数据
-								type: 'post', //HTTP请求类型
-								timeout: 10000, //超时时间设置为10秒；
-								success: function(data) {
-									wt.close();
-									if(data.json == 1) {
-										settings.scene = scene - 1;
-										app.setSettings(settings);
-										plus.nativeUI.toast('设置成功');
+								} else {
+									plus.nativeUI.toast('硬件离线');
 
-									} else {
-										plus.nativeUI.toast('硬件离线');
-
-									}
-								},
-								error: function(xhr, type, errorThrown) {
-									wt.close();
-									//异常处理；
-									plus.nativeUI.toast('设置失败');
-									console.log(type);
 								}
-							});
+							},
+							error: function(xhr, type, errorThrown) {
+								wt.close();
+								//异常处理；
+								plus.nativeUI.toast('设置失败');
+								console.log(type);
+							}
+						});
 
 					});
 

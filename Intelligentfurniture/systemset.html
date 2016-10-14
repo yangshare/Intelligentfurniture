@@ -59,28 +59,28 @@
 				<input id='Mac' type="text" value="未连接">
 			</div>
 			<div class="mui-input-row">
-				<label><a href="javascript:void(0);" onclick="toFeedback()">反馈</a></label>
+				<label><a id="toFeedback" href="javascript:void(0);">反馈</a></label>
 			</div>
 			<div class="mui-input-row">
-				<label><a href="javascript:void(0);" onclick="toAbout()">关于</a></label>
+				<label><a id="toAbout" href="javascript:void(0);">关于</a></label>
 			</div>
 		</div>
 		<div class="mui-content-padded" style="padding: 5px;">
-			<button id='exit' onclick="exit()" class="mui-btn mui-btn-block mui-btn-primary" style="padding: 5px;">
+			<button id='exit'  class="mui-btn mui-btn-block mui-btn-primary" style="padding: 5px;">
 				退出登录
 			</button>
 		</div>
 		<div class="mui-bar mui-bar-footer">
 			<nav class="mui-bar mui-bar-tab">
-				<a id="locationMain" class="mui-tab-item " onclick="window.location.href='myLog.html'">
+				<a id="locationMain" class="mui-tab-item " href='myLog.html'>
 					<span class="mui-icon iconfont icon-qishi01"></span>
 					<span class="mui-tab-label">通知</span>
 				</a>
-				<a id="map" class="mui-tab-item " onclick="window.location.href='main.html'">
+				<a id="map" class="mui-tab-item " href='main.html'>
 					<span class="mui-icon iconfont icon-zhuye"></span>
 					<span class="mui-tab-label">主页</span>
 				</a>
-				<a id="dayHistoryData" class="mui-tab-item mui-active" onclick="window.location.href='systemset.html'">
+				<a id="dayHistoryData" class="mui-tab-item mui-active" href='systemset.html'>
 					<span class="mui-icon iconfont icon-wo"></span>
 					<span class="mui-tab-label">我</span>
 				</a>
@@ -92,6 +92,7 @@
 			mui.init();
 			mui.plusReady(function() {
 				//从服务端拉取环境参数
+				sendData();
 				function sendData() {
 					var w = null; //等待动画
 					mui.ajax(myUrl + 'User_personalInformation', {
@@ -113,7 +114,7 @@
 							 *注： ConnectionState = 0 为未连接 = 1 为已连接
 							 */
 
-							var userInfo = data.myJson;
+							var userInfo = data.myjson;
 							if(userInfo != null && userInfo != "") {
 								mui("#name")[0].value = userInfo.UserName;
 								mui("#sex")[0].value = userInfo.Sex;
@@ -163,6 +164,25 @@
 						}
 					});
 				}
+				
+				mui("#exit")[0].addEventListener("tap",function(){
+					exit();
+				});
+				mui("#toFeedback")[0].addEventListener("tap",function(){
+					toFeedback();
+				});
+				mui("#toAbout")[0].addEventListener("tap",function(){
+					toAbout();
+				});
+				mui("#locationMain")[0].addEventListener("tap", function() {
+					window.location.href="myLog.html";
+				});
+				mui("#map")[0].addEventListener("tap", function() {
+					window.location.href="main.html";
+				});
+				mui("#dayHistoryData")[0].addEventListener("tap", function() {
+					window.location.href="systemset.html";
+				});
 			});
 		</script>
 	</body>

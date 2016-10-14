@@ -38,7 +38,7 @@
 
 				<!--暂停-->
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" style="padding-bottom: 0px;">
-					<a href="javascript:void(0)" onclick="myClick(1)">
+					<a href="javascript:void(0)">
 						<span class="mui-icon iconfont icon-stop"></span>
 						<div class="mui-media-body">暂停</div>
 					</a>
@@ -49,7 +49,7 @@
 
 				<!--开-->
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-					<a href="javascript:void(0)" onclick="myClick(2)">
+					<a href="javascript:void(0)">
 						<span class="mui-icon iconfont icon-open" style="float: right;"></span>
 						<div class="mui-media-body" style="padding-left: 45px;">开</div>
 					</a>
@@ -59,7 +59,7 @@
 				</li>
 				<!--关-->
 				<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-					<a href="javascript:void(0)" onclick="myClick(0)">
+					<a href="javascript:void(0)">
 						<span class="mui-icon iconfont icon-guanbi1" style="float: left;"></span>
 						<div class="mui-media-body" style="padding-right: 50px;">关</div>
 					</a>
@@ -91,8 +91,9 @@
 				if(localStorage.getItem("WindowState") != null) {
 					WindowState = localStorage.getItem("WindowState");
 				}
+				console.log("本地的窗帘状态："+localStorage.getItem("WindowState"));
 				//窗帘状态判断
-				isWindowState();
+				isWindowState(WindowState);
 				//点击判断
 				//开：      11cd6e
 				//暂停：    ea8010
@@ -101,15 +102,20 @@
 					switch(index) {
 						case 0:
 							mui(".icon-guanbi1")[0].style.color = "#eb4f38";
+							mui(".icon-stop")[0].style.color = "#787878";
+							mui(".icon-open")[0].style.color = "#787878";
 							WindowState = 0; //开关，0关，1开
 							break;
 						case 1:
 							mui(".icon-stop")[0].style.color = "#ea8010";
+							mui(".icon-guanbi1")[0].style.color = "#787878";
+							mui(".icon-open")[0].style.color = "#787878";
 							WindowState = 1; //开关，0关，1开
 							break;
 						case 2:
 							mui(".icon-open")[0].style.color = "#11cd6e";
-							WindowState = 2; //开关，0关，1开
+							mui(".icon-stop")[0].style.color = "#787878";
+							mui(".icon-guanbi1")[0].style.color = "#787878";WindowState = 2; //开关，0关，1开
 							break;
 						default:
 							break;
@@ -119,15 +125,15 @@
 				/**
 				 * 窗帘状态判断
 				 */
-				function isWindowState() {
-					switch(index) {
-						case 0:
+				function isWindowState(windowState) {
+					switch(windowState) {
+						case "0":
 							mui(".icon-guanbi1")[0].style.color = "#eb4f38";
 							break;
-						case 1:
+						case "1":
 							mui(".icon-stop")[0].style.color = "#ea8010";
 							break;
-						case 2:
+						case "2":
 							mui(".icon-open")[0].style.color = "#11cd6e";
 							break;
 						default:
@@ -177,6 +183,17 @@
 						}
 					});
 				}
+				
+				mui(".icon-guanbi1")[0].addEventListener("tap",function(){
+					myClick(0);
+					
+				});
+				mui(".icon-stop")[0].addEventListener("tap",function(){
+					myClick(1);
+				});
+				mui(".icon-open")[0].addEventListener("tap",function(){
+					myClick(2);
+				});
 			});
 		</script>
 	</body>

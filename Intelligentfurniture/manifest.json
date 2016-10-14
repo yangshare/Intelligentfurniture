@@ -7,7 +7,7 @@
 	"id": "H5ACFB129",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "智能家居",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "1.0.0",/*应用版本名称*/
+		"name": "1.0.1",/*应用版本名称*/
 		"code": "10707"
 	},
 	"description": "HTML5 Plus能力演示",/*应用描述信息*/
@@ -356,7 +356,9 @@
 			},
 			"plus/barcode_scan.html": {
 				"href": "plus/barcode_scan.html",
-				"resources": [],
+				"resources": [
+					"css/common.css"
+				],
 				"refer": [],
 				"priority": 4
 			},
@@ -1400,7 +1402,10 @@
 					"reg.html",
 					"forget.html",
 					"locationMain.html",
-					"main.html"
+					"main.html",
+					"js/app.js",
+					"css/mui.min.css",
+					"css/style.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -1414,9 +1419,15 @@
 					"css/mui.css",
 					"fonts/mui.ttf",
 					"login.html",
-					"css/iconfont.css"
+					"css/iconfont.css",
+					"js/app.js",
+					"js/common.js",
+					"css/mui.min.css",
+					"css/style.css"
 				],
-				"refer": [],
+				"refer": [
+					"plus/barcode_scan.html"
+				],
 				"priority": 0
 			},
 			"setData.html": {
@@ -1650,7 +1661,9 @@
 					"setMian.html",
 					"css/mui.css",
 					"menu.html",
-					"main.html"
+					"main.html",
+					"myLog.html",
+					"images/img/w0.png"
 				],
 				"refer": [
 					"login.html"
@@ -1830,12 +1843,16 @@
 					"second/scenario.html",
 					"second/windowSet.html",
 					"systemset.html",
-					"second/huanjing.html"
+					"second/huanjing.html",
+					"js/app.js",
+					"js/my/variable.js",
+					"myLog.html"
 				],
 				"refer": [
 					"maps_map.html",
 					"dayHistoryData.html",
-					"menu.html"
+					"menu.html",
+					"feedback.html"
 				],
 				"priority": 0
 			},
@@ -1867,7 +1884,11 @@
 					"css/mui.min.css",
 					"fonts/iconfont.ttf",
 					"main.html",
-					"second/chazuotime.html"
+					"second/chazuotime.html",
+					"js/my/variable.js",
+					"js/mui.js",
+					"images/you1.png",
+					"images/you0.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -1887,7 +1908,8 @@
 					"images/img/button_green.png",
 					"images/img/button_red.png",
 					"images/img/button_blue.png",
-					"second/lighttime.html"
+					"second/lighttime.html",
+					"images/img/light_red.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -1895,7 +1917,13 @@
 			"second/scenario.html": {
 				"resources": [
 					"main.html",
-					"js/app.js"
+					"js/app.js",
+					"fonts/mui.ttf",
+					"js/my/variable.js",
+					"js/mui.min.js",
+					"css/iconfont.css",
+					"css/mui.min.css",
+					"fonts/iconfont.ttf"
 				],
 				"refer": [],
 				"priority": 0
@@ -1909,7 +1937,11 @@
 					"fonts/iconfont.ttf",
 					"images/img/w0.png",
 					"images/you3.png",
-					"images/you3.jpg"
+					"images/you3.jpg",
+					"js/app.js",
+					"js/my/variable.js",
+					"js/mui.min.js",
+					"second/windowSetTime.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -1926,7 +1958,9 @@
 					"fonts/mui.ttf",
 					"images/you4.png",
 					"css/iconfont.css",
-					"css/mui.min.css"
+					"css/mui.min.css",
+					"js/mui.min.js",
+					"js/my/variable.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -1936,7 +1970,18 @@
 					"fonts/mui.ttf",
 					"css/iconfont.css",
 					"fonts/iconfont.ttf",
-					"css/mui.css"
+					"css/mui.css",
+					"main.html",
+					"js/my/variable.js",
+					"js/mui.min.js",
+					"systemset.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"second/windowSetTime.html": {
+				"resources": [
+					"second/windowSet.html"
 				],
 				"refer": [],
 				"priority": 0

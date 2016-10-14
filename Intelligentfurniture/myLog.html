@@ -39,7 +39,7 @@
 			mui.init();
 			mui.plusReady(function() {
 				//从服务端拉取数据
-				mui.ajax(myUrl + 'Log_ getMyLog', {
+				mui.ajax(myUrl + 'Log_getMyLog', {
 					data: {
 						PhoneNum: JSON.parse(localStorage.getItem("user")).account
 					},

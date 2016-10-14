@@ -87,6 +87,7 @@
 
 						mui.ajax(myUrl + 'Command_windowControl', {
 							data: {
+								MacName:plus.storage.getItem("myMac"),
 								Time: mui("#pickDateBtn")[0].innerHTML + " " + mui("#pickTimeBtn")[0].innerHTML + ":00",
 								TimeMark: 2,
 								ControlState: selectValue.options[index].value
